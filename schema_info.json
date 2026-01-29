@@ -1,0 +1,323 @@
+{
+  "database": "superstore",
+  "tables": {
+    "store": {
+      "columns": {
+        "Row ID": {
+          "type": "int",
+          "nullable": false,
+          "key": "PRI",
+          "default": null,
+          "description": "Row ID : int : Column in store table",
+          "sample_values": [],
+          "is_primary": true
+        },
+        "Order ID": {
+          "type": "varchar(50)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Order ID : varchar(50) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Order Date": {
+          "type": "date",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Order Date : date : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Ship Date": {
+          "type": "date",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Ship Date : date : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Ship Mode": {
+          "type": "varchar(50)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Ship Mode : varchar(50) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Customer ID": {
+          "type": "varchar(50)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Customer ID : varchar(50) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Customer Name": {
+          "type": "varchar(255)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Customer Name : varchar(255) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Segment": {
+          "type": "varchar(100)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Segment : varchar(100) : Column in store table",
+          "sample_values": [
+            "Consumer",
+            "Corporate",
+            "Home Office"
+          ],
+          "is_primary": false
+        },
+        "Country": {
+          "type": "varchar(100)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Country : varchar(100) : Column in store table",
+          "sample_values": [
+            "United States"
+          ],
+          "is_primary": false
+        },
+        "City": {
+          "type": "varchar(100)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "City : varchar(100) : Column in store table",
+          "sample_values": [
+            "Henderson",
+            "Los Angeles",
+            "Fort Lauderdale",
+            "Concord",
+            "Seattle"
+          ],
+          "is_primary": false
+        },
+        "State": {
+          "type": "varchar(100)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "State : varchar(100) : Column in store table",
+          "sample_values": [
+            "Kentucky",
+            "California",
+            "Florida",
+            "North Carolina",
+            "Washington"
+          ],
+          "is_primary": false
+        },
+        "Postal Code": {
+          "type": "varchar(20)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Postal Code : varchar(20) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Region": {
+          "type": "varchar(50)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Region : varchar(50) : Column in store table",
+          "sample_values": [
+            "South",
+            "West",
+            "Central",
+            "East"
+          ],
+          "is_primary": false
+        },
+        "Product ID": {
+          "type": "varchar(50)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Product ID : varchar(50) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Category": {
+          "type": "varchar(50)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Category : varchar(50) : Column in store table",
+          "sample_values": [
+            "Furniture",
+            "Office Supplies",
+            "Technology"
+          ],
+          "is_primary": false
+        },
+        "Sub-Category": {
+          "type": "varchar(50)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Sub-Category : varchar(50) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Product Name": {
+          "type": "varchar(255)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Product Name : varchar(255) : Column in store table",
+          "sample_values": [],
+          "is_primary": false
+        },
+        "Sales": {
+          "type": "decimal(10,2)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Sales : decimal(10,2) : Column in store table",
+          "sample_values": [
+            "261.96",
+            "731.94",
+            "14.62",
+            "957.58",
+            "22.37"
+          ],
+          "is_primary": false
+        },
+        "Quantity": {
+          "type": "int",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Quantity : int : Column in store table",
+          "sample_values": [
+            2,
+            3,
+            5,
+            7,
+            4
+          ],
+          "is_primary": false
+        },
+        "Discount": {
+          "type": "decimal(5,2)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Discount : decimal(5,2) : Column in store table",
+          "sample_values": [
+            "0.00",
+            "0.45",
+            "0.20",
+            "0.80",
+            "0.30"
+          ],
+          "is_primary": false
+        },
+        "Profit": {
+          "type": "decimal(10,2)",
+          "nullable": true,
+          "key": "",
+          "default": null,
+          "description": "Profit : decimal(10,2) : Column in store table",
+          "sample_values": [
+            "41.91",
+            "219.58",
+            "6.87",
+            "-383.03",
+            "2.52"
+          ],
+          "is_primary": false
+        }
+      },
+      "row_count": 9994,
+      "sample_data": [
+        {
+          "Row ID": 1,
+          "Order ID": "CA-2017-152156",
+          "Order Date": "2017-11-08",
+          "Ship Date": "2017-11-11",
+          "Ship Mode": "Second Class",
+          "Customer ID": "CG-12520",
+          "Customer Name": "Claire Gute",
+          "Segment": "Consumer",
+          "Country": "United States",
+          "City": "Henderson",
+          "State": "Kentucky",
+          "Postal Code": "42420.0",
+          "Region": "South",
+          "Product ID": "FUR-BO-10001798",
+          "Category": "Furniture",
+          "Sub-Category": "Bookcases",
+          "Product Name": "Bush Somerset Collection Bookcase",
+          "Sales": "261.96",
+          "Quantity": 2,
+          "Discount": "0.00",
+          "Profit": "41.91"
+        },
+        {
+          "Row ID": 2,
+          "Order ID": "CA-2017-152156",
+          "Order Date": "2017-11-08",
+          "Ship Date": "2017-11-11",
+          "Ship Mode": "Second Class",
+          "Customer ID": "CG-12520",
+          "Customer Name": "Claire Gute",
+          "Segment": "Consumer",
+          "Country": "United States",
+          "City": "Henderson",
+          "State": "Kentucky",
+          "Postal Code": "42420.0",
+          "Region": "South",
+          "Product ID": "FUR-CH-10000454",
+          "Category": "Furniture",
+          "Sub-Category": "Chairs",
+          "Product Name": "Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back",
+          "Sales": "731.94",
+          "Quantity": 3,
+          "Discount": "0.00",
+          "Profit": "219.58"
+        },
+        {
+          "Row ID": 3,
+          "Order ID": "CA-2017-138688",
+          "Order Date": "2017-06-12",
+          "Ship Date": "2017-06-16",
+          "Ship Mode": "Second Class",
+          "Customer ID": "DV-13045",
+          "Customer Name": "Darrin Van Huff",
+          "Segment": "Corporate",
+          "Country": "United States",
+          "City": "Los Angeles",
+          "State": "California",
+          "Postal Code": "90036.0",
+          "Region": "West",
+          "Product ID": "OFF-LA-10000240",
+          "Category": "Office Supplies",
+          "Sub-Category": "Labels",
+          "Product Name": "Self-Adhesive Address Labels for Typewriters by Universal",
+          "Sales": "14.62",
+          "Quantity": 2,
+          "Discount": "0.00",
+          "Profit": "6.87"
+        }
+      ],
+      "description": "Table store with 9994 rows and 21 columns"
+    }
+  },
+  "extracted_at": "2026-01-27T11:11:16.467500"
+}
