@@ -4,243 +4,192 @@
     "store": {
       "columns": {
         "Row ID": {
-          "type": "int",
+          "type": "b'int'",
           "nullable": false,
           "key": "PRI",
           "default": null,
-          "description": "Row ID : int : Column in store table",
+          "description": "Row ID : b'int' : Unique identifier for each row in the store table - Use as a primary key or for data linking.",
           "sample_values": [],
           "is_primary": true
         },
         "Order ID": {
-          "type": "varchar(50)",
+          "type": "b'varchar(50)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Order ID : varchar(50) : Column in store table",
+          "description": "Order ID : varchar(50) : Unique identifier for each order - Use for tracking individual orders and customer transactions.",
           "sample_values": [],
           "is_primary": false
         },
         "Order Date": {
-          "type": "date",
+          "type": "b'date'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Order Date : date : Column in store table",
+          "description": "Order Date : DATE : Date when order was placed - Use for time-based analysis",
           "sample_values": [],
           "is_primary": false
         },
         "Ship Date": {
-          "type": "date",
+          "type": "b'date'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Ship Date : date : Column in store table",
+          "description": "Ship Date : DATE : Date when shipment occurred - Use for analyzing shipping timelines.",
           "sample_values": [],
           "is_primary": false
         },
         "Ship Mode": {
-          "type": "varchar(50)",
+          "type": "b'varchar(50)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Ship Mode : varchar(50) : Column in store table",
+          "description": "Ship Mode : varchar(50) : Shipping mode used by store - Use for analyzing shipping methods and their impact on operations.",
           "sample_values": [],
           "is_primary": false
         },
         "Customer ID": {
-          "type": "varchar(50)",
+          "type": "b'varchar(50)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Customer ID : varchar(50) : Column in store table",
+          "description": "Customer ID : varchar(50) : Unique identifier for each customer - Use for identifying individual customers and tracking their interactions.",
           "sample_values": [],
           "is_primary": false
         },
         "Customer Name": {
-          "type": "varchar(255)",
+          "type": "b'varchar(255)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Customer Name : varchar(255) : Column in store table",
+          "description": "Customer Name : varchar(255) : Customer name associated with each store - Use for customer segmentation and profiling.",
           "sample_values": [],
           "is_primary": false
         },
         "Segment": {
-          "type": "varchar(100)",
+          "type": "b'varchar(100)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Segment : varchar(100) : Column in store table",
-          "sample_values": [
-            "Consumer",
-            "Corporate",
-            "Home Office"
-          ],
+          "description": "Segment : VARCHAR(100) : Segment identifier for the store - Use for categorizing stores by segment.",
+          "sample_values": [],
           "is_primary": false
         },
         "Country": {
-          "type": "varchar(100)",
+          "type": "b'varchar(100)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Country : varchar(100) : Column in store table",
-          "sample_values": [
-            "United States"
-          ],
+          "description": "Country : varchar(100) : Country where store is located - Use for geographic analysis or filtering by region.",
+          "sample_values": [],
           "is_primary": false
         },
         "City": {
-          "type": "varchar(100)",
+          "type": "b'varchar(100)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "City : varchar(100) : Column in store table",
-          "sample_values": [
-            "Henderson",
-            "Los Angeles",
-            "Fort Lauderdale",
-            "Concord",
-            "Seattle"
-          ],
+          "description": "City : varchar(100) : City name where store is located - Use for geographic analysis and filtering by location.",
+          "sample_values": [],
           "is_primary": false
         },
         "State": {
-          "type": "varchar(100)",
+          "type": "b'varchar(100)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "State : varchar(100) : Column in store table",
-          "sample_values": [
-            "Kentucky",
-            "California",
-            "Florida",
-            "North Carolina",
-            "Washington"
-          ],
+          "description": "State : VARCHAR(100) : State or region where store is located - Use for geographic analysis.",
+          "sample_values": [],
           "is_primary": false
         },
         "Postal Code": {
-          "type": "varchar(20)",
+          "type": "b'varchar(20)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Postal Code : varchar(20) : Column in store table",
+          "description": "Postal Code : varchar(20) : Postal code associated with the store location - Use for geospatial analysis or filtering by region.",
           "sample_values": [],
           "is_primary": false
         },
         "Region": {
-          "type": "varchar(50)",
+          "type": "b'varchar(50)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Region : varchar(50) : Column in store table",
-          "sample_values": [
-            "South",
-            "West",
-            "Central",
-            "East"
-          ],
+          "description": "Region : varchar(50) : Region where store is located - Use for geographic analysis or segmentation.",
+          "sample_values": [],
           "is_primary": false
         },
         "Product ID": {
-          "type": "varchar(50)",
+          "type": "b'varchar(50)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Product ID : varchar(50) : Column in store table",
+          "description": "Product ID : varchar(50) : Unique identifier for each product in the store - Use for identifying and tracking specific products.",
           "sample_values": [],
           "is_primary": false
         },
         "Category": {
-          "type": "varchar(50)",
+          "type": "b'varchar(50)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Category : varchar(50) : Column in store table",
-          "sample_values": [
-            "Furniture",
-            "Office Supplies",
-            "Technology"
-          ],
+          "description": "Category : varchar(50) : Category classification for store items - Use for filtering or grouping by product type.",
+          "sample_values": [],
           "is_primary": false
         },
         "Sub-Category": {
-          "type": "varchar(50)",
+          "type": "b'varchar(50)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Sub-Category : varchar(50) : Column in store table",
+          "description": "Sub-Category : varchar(50) : Subcategory name within a category - Use for filtering and grouping by product type.",
           "sample_values": [],
           "is_primary": false
         },
         "Product Name": {
-          "type": "varchar(255)",
+          "type": "b'varchar(255)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Product Name : varchar(255) : Column in store table",
+          "description": "Product Name : varchar(255) : Product name assigned by the store - Use for product categorization and filtering.",
           "sample_values": [],
           "is_primary": false
         },
         "Sales": {
-          "type": "decimal(10,2)",
+          "type": "b'decimal(10,2)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Sales : decimal(10,2) : Column in store table",
-          "sample_values": [
-            "261.96",
-            "731.94",
-            "14.62",
-            "957.58",
-            "22.37"
-          ],
+          "description": "Sales : decimal(10,2) : Monetary value of sales - Use for financial analysis and calculations.",
+          "sample_values": [],
           "is_primary": false
         },
         "Quantity": {
-          "type": "int",
+          "type": "b'int'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Quantity : int : Column in store table",
-          "sample_values": [
-            2,
-            3,
-            5,
-            7,
-            4
-          ],
+          "description": "Quantity : b'int' : Quantity of items stored - Use for inventory analysis.",
+          "sample_values": [],
           "is_primary": false
         },
         "Discount": {
-          "type": "decimal(5,2)",
+          "type": "b'decimal(5,2)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Discount : decimal(5,2) : Column in store table",
-          "sample_values": [
-            "0.00",
-            "0.45",
-            "0.20",
-            "0.80",
-            "0.30"
-          ],
+          "description": "Discount : decimal(5,2) : Discount amount applied to store items - Use for analyzing price promotions and revenue impact.",
+          "sample_values": [],
           "is_primary": false
         },
         "Profit": {
-          "type": "decimal(10,2)",
+          "type": "b'decimal(10,2)'",
           "nullable": true,
           "key": "",
           "default": null,
-          "description": "Profit : decimal(10,2) : Column in store table",
-          "sample_values": [
-            "41.91",
-            "219.58",
-            "6.87",
-            "-383.03",
-            "2.52"
-          ],
+          "description": "Profit : decimal(10,2) : Monetary profit earned by the store - Use for financial analysis and calculations.",
+          "sample_values": [],
           "is_primary": false
         }
       },
@@ -316,8 +265,8 @@
           "Profit": "6.87"
         }
       ],
-      "description": "Table store with 9994 rows and 21 columns"
+      "description": "The \"store\" database table appears to be a sales data repository containing information about customer orders. It stores details such as order IDs, dates, shipping modes, customer demographics (ID, name, segment), geographic locations (country, city, state, postal code, region), product information (ID, category, sub-category, name), and financial metrics (sales, quantity, discount, profit). With a row count of 9,994, this table likely serves as the primary data source for analyzing sales trends, customer behavior, and market performance."
     }
   },
-  "extracted_at": "2026-01-27T11:11:16.467500"
+  "extracted_at": "2026-01-30T12:05:12.640560"
 }

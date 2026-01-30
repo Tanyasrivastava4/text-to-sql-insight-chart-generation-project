@@ -20,10 +20,10 @@ try:
     from insight_generator import InsightGenerator
     from chart_generator import ChartGenerator
     DATA_ANALYSIS_AVAILABLE = True
-    print("✅ Data analysis modules loaded")
+    print(" Data analysis modules loaded")
 except ImportError as e:
-    print(f"⚠️ Data analysis modules not available: {e}")
-    print("⚠️ Install: pip install matplotlib numpy pandas")
+    print(f" Data analysis modules not available: {e}")
+    print(" Install: pip install matplotlib numpy pandas")
     DATA_ANALYSIS_AVAILABLE = False
     
     # Create dummy classes
@@ -40,7 +40,7 @@ except ImportError as e:
     
     class InsightGenerator:
         def generate_insights(self, analysis_result, original_query, intent):
-            return "## 📊 Key Insights\n\n*Install data_analyzer.py and insight_generator.py*"
+            return "##  Key Insights\n\n*Install data_analyzer.py and insight_generator.py*"
     
     class ChartGenerator:
         def generate_chart(self, analysis_result):
@@ -62,7 +62,7 @@ class LangChainAgent:
             self.schema_text = self.schema_extractor.get_formatted_schema()
         else:
             # Use cached if recent, refresh if old
-            self.schema_extractor.refresh_schema(force=False)
+            #self.schema_extractor.refresh_schema(force=False)
             self.schema_text = self.schema_extractor.get_formatted_schema()
         
         # Initialize intent classifier
@@ -88,9 +88,9 @@ class LangChainAgent:
             "database": os.getenv("DB_NAME", "")
         }
         
-        print(f"📡 Using Ollama: {os.getenv('OLLAMA_BASE_URL')}")
-        print(f"🤖 Model: {os.getenv('OLLAMA_MODEL')}")
-        print("✅ LangChainAgent initialized!")
+        print(f" Using Ollama: {os.getenv('OLLAMA_BASE_URL')}")
+        print(f" Model: {os.getenv('OLLAMA_MODEL')}")
+        print(" LangChainAgent initialized!")
 
     # -----------------------------
     # Database Connection
@@ -117,6 +117,8 @@ Rules:
 - Add GROUP BY for dimensional analysis
 - Add ORDER BY for meaningful sorting
 - Limit results if returning many rows
+- **Use EXACT column names as shown in schema - do NOT modify them**
+- **If column names contain spaces or special characters, wrap them in backticks: e.g., `Order Date`, `Sub-Category`, `Customer ID`**
 
 Important: Only use columns and tables that exist in the schema above.
 """
@@ -150,13 +152,13 @@ Time range: {intent.get('time_range', 'None')}
             # Ensure it's a SELECT query
             sql = sql.strip()
             if not sql.upper().startswith("SELECT"):
-                print("⚠️ Generated non-SELECT query, adding SELECT * FROM store")
+                print(" Generated non-SELECT query, adding SELECT * FROM store")
                 return "SELECT * FROM store LIMIT 10"
             
             return sql
             
         except Exception as e:
-            print(f"❌ SQL generation error: {e}")
+            print(f" SQL generation error: {e}")
             # Fallback to simple query
             return "SELECT * FROM store LIMIT 10"
 
@@ -168,14 +170,14 @@ Time range: {intent.get('time_range', 'None')}
             conn = self.connect_db()
             cursor = conn.cursor(dictionary=True)
             
-            print(f"📊 Executing SQL...")
+            print(f" Executing SQL...")
             cursor.execute(sql)
             result = cursor.fetchall()
             
             # Get column names
             column_names = [desc[0] for desc in cursor.description] if cursor.description else []
             
-            print(f"✅ Query executed successfully!")
+            print(f" Query executed successfully!")
             print(f"   Rows: {len(result)}, Columns: {len(column_names)}")
             
             return {
@@ -187,7 +189,7 @@ Time range: {intent.get('time_range', 'None')}
                 "summary": f"Found {len(result)} rows with {len(column_names)} columns"
             }
         except mysql.connector.Error as e:
-            print(f"❌ Database error: {e}")
+            print(f" Database error: {e}")
             return {
                 "success": False,
                 "error": f"Database error: {str(e)}",
@@ -198,7 +200,7 @@ Time range: {intent.get('time_range', 'None')}
                 "summary": f"Error: {str(e)}"
             }
         except Exception as e:
-            print(f"❌ Execution error: {e}")
+            print(f" Execution error: {e}")
             return {
                 "success": False,
                 "error": str(e),
@@ -219,7 +221,7 @@ Time range: {intent.get('time_range', 'None')}
     # -----------------------------
     def generate_answer(self, question: str, sql: str, result: Dict) -> str:
         if not result["success"]:
-            return f"❌ Error: {result.get('error', 'Unknown error')}"
+            return f" Error: {result.get('error', 'Unknown error')}"
         
         if result["row_count"] == 0:
             return "📭 No data found for your query."
@@ -243,7 +245,7 @@ Keep it concise and business-friendly.
             response = self.llm.invoke([HumanMessage(content=prompt)])
             return response.content.strip()
         except Exception as e:
-            print(f"❌ Answer generation error: {e}")
+            print(f" Answer generation error: {e}")
             return f"Query executed successfully. Found {result['row_count']} rows."
 
     # -----------------------------
@@ -254,42 +256,42 @@ Keep it concise and business-friendly.
         print(f"🤖 Processing: {user_question}")
         print('='*60)
         
-            # ✅ NEW: Check for database updates before processing
-        print("🔍 Checking if database schema changed...")
+            # NEW: Check for database updates before processing
+        print(" Checking if database schema changed...")
         self.schema_extractor.refresh_schema(force=False)
         self.schema_text = self.schema_extractor.get_formatted_schema()
         # Step 1: Classify intent
-        print("\n🎯 Classifying intent...")
+        print("\n Classifying intent...")
         try:
             intent = self.intent_classifier.classify(user_question)
-            print(f"✅ Intent: {intent['intent']}")
+            print(f" Intent: {intent['intent']}")
             print(f"   Metrics: {intent['metrics']}")
             print(f"   Dimensions: {intent['dimensions']}")
         except Exception as e:
-            print(f"❌ Intent classification failed: {e}")
+            print(f" Intent classification failed: {e}")
             intent = {"intent": "REPORT", "metrics": [], "dimensions": [], "time_range": None}
         
         # Step 2: Generate SQL
-        print("\n🧠 Generating SQL...")
+        print("\n Generating SQL...")
         sql = self.generate_sql(user_question, intent)
-        print(f"✅ SQL: {sql}")
+        print(f" SQL: {sql}")
         
         # Step 3: Validate SQL
-        print("\n🔒 Validating SQL...")
+        print("\n Validating SQL...")
         validation_result = self.sql_validator.validate_sql(sql)
-        print(f"✅ Validation: {validation_result}")
+        print(f" Validation: {validation_result}")
         
         if validation_result != "VALID_SQL":
             return {
                 "question": user_question,
                 "sql": sql,
                 "result": {"success": False, "error": "SQL validation failed"},
-                "answer": f"❌ SQL validation failed: {validation_result}",
+                "answer": f" SQL validation failed: {validation_result}",
                 "intent": intent
             }
         
         # Step 4: Execute SQL
-        print("\n📊 Executing SQL...")
+        print("\n Executing SQL...")
         sql_result = self.execute_sql(sql)
         
         if not sql_result["success"]:
@@ -297,11 +299,11 @@ Keep it concise and business-friendly.
                 "question": user_question,
                 "sql": sql,
                 "result": sql_result,
-                "answer": f"❌ Query failed: {sql_result.get('error')}",
+                "answer": f" Query failed: {sql_result.get('error')}",
                 "intent": intent
             }
         
-        print(f"✅ Query successful! {sql_result['row_count']} rows retrieved")
+        print(f" Query successful! {sql_result['row_count']} rows retrieved")
         
         # Step 5-7: Data Analysis Pipeline (if available)
         insights = ""
@@ -311,7 +313,7 @@ Keep it concise and business-friendly.
         if DATA_ANALYSIS_AVAILABLE and sql_result["data"]:
             try:
                 # Step 5: Data Analysis
-                print("\n📈 Analyzing data...")
+                print("\n Analyzing data...")
                 data_analyzer = DataAnalyzer()
                 analysis_result = data_analyzer.analyze(
                     data=sql_result["data"],
@@ -320,7 +322,7 @@ Keep it concise and business-friendly.
                 )
                 
                 # Step 6: Generate Insights
-                print("\n💡 Generating insights...")
+                print("\n Generating insights...")
                 insight_generator = InsightGenerator()
                 insights = insight_generator.generate_insights(
                     analysis_result=analysis_result,
@@ -329,31 +331,31 @@ Keep it concise and business-friendly.
                 )
                 
                 # Step 7: Generate Chart
-                print("\n📊 Generating chart...")
+                print("\n Generating chart...")
                 chart_generator = ChartGenerator()
                 chart_result = chart_generator.generate_chart(analysis_result)
                 
                 if "image_base64" in chart_result:
-                    print(f"✅ Chart generated: {chart_result.get('type', 'chart')}")
+                    print(f" Chart generated: {chart_result.get('type', 'chart')}")
                 else:
-                    print(f"⚠️ Chart not generated: {chart_result.get('error', 'Unknown error')}")
+                    print(f" Chart not generated: {chart_result.get('error', 'Unknown error')}")
                     
             except Exception as e:
-                print(f"⚠️ Data analysis error: {e}")
-                insights = f"## 📊 Key Insights\n\n*Analysis error: {str(e)}*"
+                print(f" Data analysis error: {e}")
+                insights = f"##  Key Insights\n\n*Analysis error: {str(e)}*"
         else:
-            print("\n⚠️ Skipping data analysis (modules not available or no data)")
+            print("\n Skipping data analysis (modules not available or no data)")
         
         # Step 8: Create final answer
-        print("\n💬 Compiling final answer...")
+        print("\n Compiling final answer...")
         
         answer_parts = []
         
         # 1. SQL Query
-        answer_parts.append(f"**📝 SQL Query Used:**\n```sql\n{sql}\n```")
+        answer_parts.append(f"** SQL Query Used:**\n```sql\n{sql}\n```")
         
         # 2. Data Summary
-        answer_parts.append(f"**📊 Data Summary:**")
+        answer_parts.append(f"** Data Summary:**")
         answer_parts.append(f"- Rows retrieved: **{sql_result['row_count']}**")
         answer_parts.append(f"- Columns: {', '.join(sql_result['columns'])}")
         
@@ -370,13 +372,13 @@ Keep it concise and business-friendly.
         
         # 5. Chart info
         if "image_base64" in chart_result:
-            answer_parts.append(f"**📈 Visualization:** {chart_result.get('type', 'Chart')} generated")
+            answer_parts.append(f"** Visualization:** {chart_result.get('type', 'Chart')} generated")
         elif "error" in chart_result:
-            answer_parts.append(f"**📈 Visualization:** {chart_result['error']}")
+            answer_parts.append(f"** Visualization:** {chart_result['error']}")
         
         final_answer = "\n\n".join(answer_parts)
         
-        print(f"✅ Answer compiled ({len(final_answer)} characters)")
+        print(f" Answer compiled ({len(final_answer)} characters)")
         
         return {
             "question": user_question,
@@ -427,7 +429,7 @@ Keep it concise and business-friendly.
                 }
                 
         except Exception as e:
-            print(f"❌ Error in process_query: {e}")
+            print(f" Error in process_query: {e}")
             return {
                 "status": "error",
                 "response": f"System error: {str(e)}",
@@ -465,7 +467,7 @@ if __name__ == "__main__":
         "Count of orders by category"
     ]
     
-    print("\n🧪 Running test queries...")
+    print("\n Running test queries...")
     for i, query in enumerate(test_queries, 1):
         print(f"\n{'='*60}")
         print(f"Test {i}: '{query}'")
@@ -475,23 +477,23 @@ if __name__ == "__main__":
             # Use the chat method directly
             response = agent.chat(query)
             
-            print(f"\n✅ SQL Generated:")
+            print(f"\n SQL Generated:")
             print(response["sql"])
             
-            print(f"\n📊 Results: {response['result']['row_count']} rows")
+            print(f"\n Results: {response['result']['row_count']} rows")
             
-            print(f"\n💡 Insights Generated: {'Yes' if response.get('insights') else 'No'}")
+            print(f"\n Insights Generated: {'Yes' if response.get('insights') else 'No'}")
             
             if response.get('chart'):
                 if "image_base64" in response["chart"]:
-                    print(f"📈 Chart Generated: Yes ({response['chart'].get('type', 'chart')})")
+                    print(f" Chart Generated: Yes ({response['chart'].get('type', 'chart')})")
                 else:
-                    print(f"📈 Chart Generated: No ({response['chart'].get('error', 'Unknown')})")
+                    print(f" Chart Generated: No ({response['chart'].get('error', 'Unknown')})")
             
-            print(f"\n🎯 Intent: {response['intent'].get('intent', 'Unknown')}")
+            print(f"\n Intent: {response['intent'].get('intent', 'Unknown')}")
             
         except Exception as e:
-            print(f"❌ Test failed: {e}")
+            print(f" Test failed: {e}")
     
     # Interactive mode
     print("\n\n🎮 Interactive Mode (type 'exit' to quit)")
@@ -499,9 +501,9 @@ if __name__ == "__main__":
     
     while True:
         try:
-            user_input = input("\n📝 You: ")
+            user_input = input("\n You: ")
             if user_input.lower() in ["exit", "quit", "bye", ""]:
-                print("👋 Goodbye!")
+                print(" Goodbye!")
                 break
             
             print("\n" + "="*60)
@@ -517,10 +519,10 @@ if __name__ == "__main__":
             print("-" * 40)
             
         except KeyboardInterrupt:
-            print("\n\n👋 Interrupted. Goodbye!")
+            print("\n\n Interrupted. Goodbye!")
             break
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f" Error: {e}")
 
 
 
